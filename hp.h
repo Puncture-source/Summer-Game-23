@@ -1,5 +1,7 @@
 #pragma once
-#include "hitpointtypes.h"
+#include <cstdint>
+
+typedef std::uint16_t hpType;
 
 class hp {
 public:
@@ -25,7 +27,7 @@ public:
     
 
 // see current health
-hpType egtCurrentHP() {
+hpType getCurrentHP() {
     return currentHP;
 }
 

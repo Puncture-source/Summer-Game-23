@@ -1,6 +1,7 @@
 # Base Ideas
 
 Intro Text:
+
 *You are alone.*
 *The world dies around you.*
 
@@ -17,7 +18,7 @@ Intro Text:
 
 ## Characters
 
-- **Jackal** - Starts with the 9mm and the Duffel. Unlocked by default. 
+- **Jackal** - Starts with the 9mm and the Duffel. Unlocked by default.
 - **Zealot** – Starts with the Tower Shield, the Inscribed Axe, and the Homemade Shotgun. Unlocked by a massacre of the enemy.
 - **Ferdinand** – Starts with the Embedded Bullet and the Tome of Kings. Unlocked by lifting not a hand in violence.
 - **Running Boy** – Starts with the Package. Unlocked by witnessing a disaster.
