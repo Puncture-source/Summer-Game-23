@@ -58,13 +58,16 @@ wellType getCurrent() {
     pointWell(){
         current =1;
         max = 1;
+        shield = (wellType)0;
     }
 
 // constructor with input
 pointWell(wellType curr, wellType maxx){
+    shield = (wellType)0;
     if(curr>maxx){ //might need to fix this later, might cause issues
         current = maxx;
         max = maxx;
+ 
         return;
     }
     current = curr;

@@ -8,7 +8,7 @@ int main(){
 
 for (int i = 0; i < 10; i++) {
 		std::cout 
-        << p1.getClassName()
+			<< p1.getClassName()
 			<< " Level " << p1.getCurrentLevel() << '\n'
 			<< "-EXP: " << p1.getCurrentExp() << "/" << p1.getExpToLevel() << '\n'
 			<< "-MaxHP: " << p1.getMaxHP() << '\n'

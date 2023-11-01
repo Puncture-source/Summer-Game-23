@@ -12,7 +12,7 @@ class playerCharacterDelegate : public statBlock{
 
     public:
 
-        void distFromGod(expType c){
+        void distFromGod(levelType c){
             distanceFromGod = c;
         }
 
@@ -48,6 +48,7 @@ expType getExpToLevel(){
 }
 
 virtual void levelUP()=0;
+virtual std::string getClassName() = 0;
 
 std::unique_ptr<pointWell>HP;
 
@@ -78,6 +79,21 @@ class playerCharacter {
     public:
         playerCharacter() = delete;
         playerCharacter(playerCharacterDelegate* pc) : pcClass(pc){   }
+        ~playerCharacter() { delete pcClass; pcClass = nullptr; }
+
+        std::string getClassName() { return pcClass->getClassName(); }
+        levelType getCurrentLevel() { return pcClass->getCurrentLevel(); }
+        expType getCurrentExp() { return pcClass->getCurrentExp(); }
+        expType getExpToLevel() { return pcClass->getExpToLevel(); }
+        wellType getCurrentHP() { return pcClass->HP->getCurrent(); }
+        wellType getMaxHP() { return pcClass->HP->getMax(); }
+        statType getStrength() { return pcClass->getStrength(); }
+        statType getIntellect() { return pcClass->getIntellect(); }
+
+        void gainExp(expType amt) { pcClass->gainExp(amt); }
+        void takeDamage(wellType amt) { pcClass->HP->reduce(amt); }
+        void heal(wellType amt) { pcClass->HP->increase(amt); }
+
     private:
         playerCharacterDelegate* pcClass;
 
@@ -88,8 +104,7 @@ class playerCharacter {
 
 // JACKAL
 class jackal : public playerCharacterDelegate{
-//jackal constructor    
-
+  
 public:
     static const wellType baseHP = (wellType)5u;
     static const statType baseStrength = (statType)3u;
@@ -108,19 +123,18 @@ public:
 
     }
 
-std::string getClassName() {return std::string("Jackal");}
+std::string getClassName() override {return std::string("Jackal");}
 private:
     void levelUP() override{
-        HP->setMax((wellType)growthHP +HP->getMax());
+        HP->setMax((wellType)growthHP + HP->getMax());
         increaseStats(growthStrength, growthIntellect);
     }
 };
 
 
 // ZEALOT
-class zealot : public pointWell, public statBlock {
-//zealot constructor    
-
+class zealot : public playerCharacterDelegate {
+   
 public:
     static const wellType baseHP = (wellType)7u;
     static const statType baseStrength = (statType)5u;
@@ -131,11 +145,16 @@ public:
     static const statType growthIntellect = (statType)1u;
 
     
-    zealot() : pointWell(baseHP,baseHP) , statBlock(baseStrength, baseIntellect){}
+    zealot(): playerCharacterDelegate() {
+        HP->setMax(baseHP);
+        HP->increase(baseHP);
+        increaseStats(baseStrength, baseIntellect);
+
+    }
 
 private:
-    void levelUp() override{
-        setMax(growthHP +getMax());
+    void levelUP() override {
+        HP->setMax((wellType)growthHP + HP->getMax());
         increaseStats(growthStrength, growthIntellect);
     }
 };
