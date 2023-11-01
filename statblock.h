@@ -9,8 +9,8 @@ class statBlock {
 public:
     // default constructor
     statBlock(){
-        strength = (statType)1u; 
-        intellect = (statType)1u;
+        strength = (statType)0u; 
+        intellect = (statType)0u;
         }
 
     // input constructor

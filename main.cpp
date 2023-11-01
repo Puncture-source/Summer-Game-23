@@ -12,7 +12,7 @@ for (int i = 0; i < 10; i++) {
 			<< " Level " << p1.getCurrentLevel() << '\n'
 			<< "-EXP: " << p1.getCurrentExp() << "/" << p1.getExpToLevel() << '\n'
 			<< "-MaxHP: " << p1.getMaxHP() << '\n'
-			<< "-Stength: " << p1.getStrength() << '\n'
+			<< "-Strength: " << p1.getStrength() << '\n'
 			<< "-Intellect: " << p1.getIntellect() << '\n';
 		//if (i < 1) 
 			p1.gainExp(1u);
