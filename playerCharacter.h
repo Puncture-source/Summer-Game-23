@@ -126,7 +126,8 @@ public:
 std::string getClassName() override {return std::string("Jackal");}
 private:
     void levelUP() override{
-        HP->setMax((wellType)growthHP + HP->getMax());
+        HP->setMax(growthHP + HP->getMax());
+        HP->increase(growthHP);
         increaseStats(growthStrength, growthIntellect);
     }
 };
@@ -134,7 +135,7 @@ private:
 
 // ZEALOT
 class zealot : public playerCharacterDelegate {
-   
+
 public:
     static const wellType baseHP = (wellType)7u;
     static const statType baseStrength = (statType)5u;
@@ -155,6 +156,7 @@ public:
 private:
     void levelUP() override {
         HP->setMax((wellType)growthHP + HP->getMax());
+        HP->increase(growthHP);
         increaseStats(growthStrength, growthIntellect);
     }
 };

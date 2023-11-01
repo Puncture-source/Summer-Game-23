@@ -11,7 +11,7 @@ for (int i = 0; i < 10; i++) {
 			<< p1.getClassName()
 			<< " Level " << p1.getCurrentLevel() << '\n'
 			<< "-EXP: " << p1.getCurrentExp() << "/" << p1.getExpToLevel() << '\n'
-			<< "-MaxHP: " << p1.getMaxHP() << '\n'
+			<< "-HP: " << p1.getCurrentHP() <<'/'<<p1.getMaxHP() <<'\n'
 			<< "-Strength: " << p1.getStrength() << '\n'
 			<< "-Intellect: " << p1.getIntellect() << '\n';
 		//if (i < 1) 
@@ -20,5 +20,6 @@ for (int i = 0; i < 10; i++) {
 	}
 
 	std::cout << "------------\n";
+	system("pause");
     return 0;
 }
