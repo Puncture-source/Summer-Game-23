@@ -60,6 +60,9 @@ std::unique_ptr<pointWell>HP;
         levelType distanceFromGod;
         expType expToLevel;
 
+
+
+
         bool check_if_level(){
             if(currentExp >= expToLevel){
                 currentExp = 0;
@@ -89,6 +92,10 @@ class playerCharacter {
         wellType getMaxHP() { return pcClass->HP->getMax(); }
         statType getStrength() { return pcClass->getStrength(); }
         statType getIntellect() { return pcClass->getIntellect(); }
+        statType getAgility() { return pcClass->getAgility(); }
+        statType getResistance() { return pcClass->getResistance(); }
+        statType getArmour() { return pcClass->getArmour(); }
+        
 
         void gainExp(expType amt) { pcClass->gainExp(amt); }
         void takeDamage(wellType amt) { pcClass->HP->reduce(amt); }
@@ -97,11 +104,22 @@ class playerCharacter {
     private:
         playerCharacterDelegate* pcClass;
 
+
 };
 
 // -----------------CLASSES------------------------ //
 
+#define PCCONSTRUCT : playerCharacterDelegate() {\
+        HP->setMax(baseHP);\
+        HP->increase(baseHP);\
+        increaseStats(baseStrength, baseIntellect, baseAgility, baseResistance, baseArmour);\
+    }
 
+#define LEVELUP void levelUP() override{\
+        HP->setMax(growthHP + HP->getMax());\
+        HP->increase(growthHP);\
+        increaseStats(growthStrength, growthIntellect, growthAgility, growthResistance, growthArmour);\
+    }
 // JACKAL
 class jackal : public playerCharacterDelegate{
   
@@ -109,31 +127,29 @@ public:
     static const wellType baseHP = (wellType)5u;
     static const statType baseStrength = (statType)3u;
     static const statType baseIntellect = (statType)3u;
+    static const statType baseAgility = (statType)3u;
+    static const statType baseResistance = (statType)3u;
+    static const statType baseArmour = (statType)3u;
 
     static const wellType growthHP = (wellType)5u;
     static const statType growthStrength = (statType)3u;
     static const statType growthIntellect = (statType)3u;
+    static const statType growthAgility = (statType)3u;
+    static const statType growthResistance = (statType)3u;
+    static const statType growthArmour = (statType)3u;
 
     
-    jackal() : playerCharacterDelegate() {
-        HP->setMax(baseHP);
-        HP->increase(baseHP);
-
-        increaseStats(baseStrength, baseIntellect);
-
-    }
+    jackal()PCCONSTRUCT
 
 std::string getClassName() override {return std::string("Jackal");}
 private:
-    void levelUP() override{
-        HP->setMax(growthHP + HP->getMax());
-        HP->increase(growthHP);
-        increaseStats(growthStrength, growthIntellect);
-    }
+    LEVELUP
 };
 
 
 // ZEALOT
+
+/*
 class zealot : public playerCharacterDelegate {
 
 public:
@@ -146,17 +162,9 @@ public:
     static const statType growthIntellect = (statType)1u;
 
     
-    zealot(): playerCharacterDelegate() {
-        HP->setMax(baseHP);
-        HP->increase(baseHP);
-        increaseStats(baseStrength, baseIntellect);
-
-    }
-
+    zealot()PCCONSTRUCT
 private:
-    void levelUP() override {
-        HP->setMax((wellType)growthHP + HP->getMax());
-        HP->increase(growthHP);
-        increaseStats(growthStrength, growthIntellect);
-    }
+    LEVELUP
 };
+
+*/
