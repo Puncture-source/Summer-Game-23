@@ -1,21 +1,25 @@
 #include <iostream>
-#include "allCharacters.h"
+#include "playerCharacter.h"
 
 
 int main(){
-    jackal jack1;
+    playerCharacter p1(new jackal());
+
+
 for (int i = 0; i < 10; i++) {
 		std::cout 
-			<< "Jackal Level " << jack1.getCurrentLevel() << '\n'
-			<< "-EXP: " << jack1.getCurrentExp() << "/" << jack1.getExpToLevel() << '\n'
-			<< "-MaxHP: " << jack1.getMaxHP() << '\n'
-			<< "-Stength: " << jack1.getStrength() << '\n'
-			<< "-Intellect: " << jack1.getIntellect() << '\n';
+			<< p1.getClassName()
+			<< " Level " << p1.getCurrentLevel() << '\n'
+			<< "-EXP: " << p1.getCurrentExp() << "/" << p1.getExpToLevel() << '\n'
+			<< "-HP: " << p1.getCurrentHP() <<'/'<<p1.getMaxHP() <<'\n'
+			<< "-Strength: " << p1.getStrength() << '\n'
+			<< "-Intellect: " << p1.getIntellect() << '\n';
 		//if (i < 1) 
-			jack1.gainExp(1u);
+			p1.gainExp(1u);
             	std::cout << "------------\n\n\n";
 	}
 
 	std::cout << "------------\n";
+	system("pause");
     return 0;
 }

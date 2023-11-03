@@ -1,5 +1,5 @@
 #pragma once
-#include "hp.h"
+#include "pointWell.h"
 #include "statblock.h"
 #include "levelSystem.h"
 class jackal : public hp, public statBlock, public levelSystem {
